@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36212.18 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNewsApp", "FluentNewsApp\FluentNewsApp.csproj", "{82A36EE8-E2B9-4ECA-BC0C-3A1167EEF0EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNewsApp_uTests", "FluentNewsApp_uTests\FluentNewsApp_uTests.csproj", "{362BBEB8-FB60-4E7B-8E73-54806088E0A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{82A36EE8-E2B9-4ECA-BC0C-3A1167EEF0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82A36EE8-E2B9-4ECA-BC0C-3A1167EEF0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82A36EE8-E2B9-4ECA-BC0C-3A1167EEF0EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{362BBEB8-FB60-4E7B-8E73-54806088E0A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{362BBEB8-FB60-4E7B-8E73-54806088E0A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{362BBEB8-FB60-4E7B-8E73-54806088E0A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{362BBEB8-FB60-4E7B-8E73-54806088E0A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
