@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36212.18 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNewsApp", "FluentNewsApp\FluentNewsApp.csproj", "{82A36EE8-E2B9-4ECA-BC0C-3A1167EEF0EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82A36EE8-E2B9-4ECA-BC0C-3A1167EEF0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A36EE8-E2B9-4ECA-BC0C-3A1167EEF0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A36EE8-E2B9-4ECA-BC0C-3A1167EEF0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A36EE8-E2B9-4ECA-BC0C-3A1167EEF0EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0FEB028-F017-4E0C-AE18-0464F60B9546}
+	EndGlobalSection
+EndGlobal
