@@ -19,8 +19,8 @@
                    FontSize="24" 
                    HorizontalAlignment="Center" 
                    Margin="10"/>
-        <local:CategoryControl Grid.Row="1" Category="{Binding Path=TechnologyNews.Category}"/>
-        <local:CategoryControl Grid.Row="2" Category="{Binding Path=HealthNews.Category}"/>
-        <local:CategoryControl Grid.Row="3" Category="{Binding Path=EntertainmentNews.Category}"/>
+        <local:CategoryControl Grid.Row="1" Category="{Binding Path=TechnologyNews.Category}" Articles="{Binding Path=TechnologyNews.Articles}"/>
+        <local:CategoryControl Grid.Row="2" Category="{Binding Path=HealthNews.Category}" Articles="{Binding Path=HealthNews.Articles}"/>
+        <local:CategoryControl Grid.Row="3" Category="{Binding Path=EntertainmentNews.Category}" Articles="{Binding Path=EntertainmentNews.Articles}"/>
     </Grid>
 </Window>

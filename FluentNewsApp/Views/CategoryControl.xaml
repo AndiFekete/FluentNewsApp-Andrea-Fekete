@@ -6,10 +6,22 @@
              xmlns:local="clr-namespace:FluentNewsApp.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ArticleTemplate">
+            <StackPanel Margin="5">
+                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text="{Binding Published}" FontSize="12" Margin="0,5,0,0"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    
     <Grid>
-        <TextBlock Text="{Binding Path=Category, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                  FontSize="20"
-                  HorizontalAlignment="Center"
-                  Margin="10"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="{Binding Path=Category, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="20" HorizontalAlignment="Center" Margin="10" Grid.Row="0"/>
+        <ListView ItemsSource="{Binding Path=Articles, RelativeSource={RelativeSource AncestorType=UserControl}}" ItemTemplate="{StaticResource ArticleTemplate}" Grid.Row="1"/>
     </Grid>
 </UserControl>
