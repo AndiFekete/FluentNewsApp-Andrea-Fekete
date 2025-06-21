@@ -1,8 +1,11 @@
-﻿using System.Net.Http;
+﻿using FluentNewsApp.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Net.Http;
 
 namespace FluentNewsApp.WebCalls
 {
-    public sealed class NewsApiClient
+    public sealed class NewsApiClient : INewsApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
@@ -11,10 +14,21 @@ namespace FluentNewsApp.WebCalls
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<string> GetTopNewsAsync()
+        public async Task<List<Article>> GetNewsByCategoryAsync(string category)
         {
-            var url = "https://newsapi.org/v2/top-headlines?country=us";
-            return await GetAsync(url).ContinueWith(response => response.Result.Content.ReadAsStringAsync().Result);
+            var url = $"https://newsapi.org/v2/top-headlines?country=hu&category={category}";
+            var response = await GetAsync(url);
+            var jsonString = await response.Content.ReadAsStringAsync();
+
+            var jsonOnbject = JsonConvert.DeserializeObject<JObject>(jsonString);
+            //TODO handle status != ok
+            var articleObjects = jsonOnbject["articles"]?.ToObject<List<JObject>>();
+            
+            return articleObjects?.Select(article => new Article
+            {
+                Title = article["title"].ToString(),
+                Published = DateTime.Parse(article["publishedAt"]?.ToString())
+            }).ToList() ?? new List<Article>();
         }
 
         private async Task<HttpResponseMessage> GetAsync(string url)
@@ -25,6 +39,7 @@ namespace FluentNewsApp.WebCalls
             {
                 return response;
             }
+
             throw new HttpRequestException($"Error fetching news: {response.ReasonPhrase}");
         }
     }
