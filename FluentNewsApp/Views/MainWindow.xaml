@@ -1,0 +1,26 @@
+﻿<Window x:Class="FluentNewsApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FluentNewsApp.Views"
+        mc:Ignorable="d"
+        Title="Fluent News App" Height="800" Width="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   Text="Latest news from Hungary" 
+                   FontSize="24" 
+                   HorizontalAlignment="Center" 
+                   Margin="10"/>
+        <local:CategoryControl Grid.Row="1" Category="{Binding Path=TechnologyNews.Category}"/>
+        <local:CategoryControl Grid.Row="2" Category="{Binding Path=HealthNews.Category}"/>
+        <local:CategoryControl Grid.Row="3" Category="{Binding Path=EntertainmentNews.Category}"/>
+    </Grid>
+</Window>
