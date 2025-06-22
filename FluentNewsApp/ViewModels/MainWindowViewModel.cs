@@ -66,7 +66,9 @@ namespace FluentNewsApp.ViewModels
         {
             //test
             var tech = await _newsApiClient.GetNewsByCategoryAsync("technology");
-            TechnologyNews = new ArticleFeed { Category = "Technology", Articles = tech }; ;
+            TechnologyNews = new ArticleFeed { Category = "Technology", Articles = tech, HasError = true };
+            var health = await _newsApiClient.GetNewsByCategoryAsync("health");
+            HealthNews = new ArticleFeed { Category = "Health", Articles = health };
         }
     }
 }

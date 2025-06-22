@@ -41,8 +41,8 @@
                 VerticalAlignment="Center"
                 Command="{Binding RefreshCommand}"/>
 
-        <local:CategoryControl Grid.Row="1" Grid.ColumnSpan="2" Category="{Binding Path=TechnologyNews.Category}" Articles="{Binding Path=TechnologyNews.Articles}"/>
-        <local:CategoryControl Grid.Row="2" Grid.ColumnSpan="2" Category="{Binding Path=HealthNews.Category}" Articles="{Binding Path=HealthNews.Articles}"/>
-        <local:CategoryControl Grid.Row="3" Grid.ColumnSpan="2" Category="{Binding Path=EntertainmentNews.Category}" Articles="{Binding Path=EntertainmentNews.Articles}"/>
+        <local:CategoryControl Grid.Row="1" Grid.ColumnSpan="2" Category="{Binding Path=TechnologyNews.Category}" Articles="{Binding Path=TechnologyNews.Articles}" HasError="{Binding Path=TechnologyNews.HasError}"/>
+        <local:CategoryControl Grid.Row="2" Grid.ColumnSpan="2" Category="{Binding Path=HealthNews.Category}" Articles="{Binding Path=HealthNews.Articles}" HasError="{Binding Path=HealthNews.HasError}"/>
+        <local:CategoryControl Grid.Row="3" Grid.ColumnSpan="2" Category="{Binding Path=EntertainmentNews.Category}" Articles="{Binding Path=EntertainmentNews.Articles}" HasError="{Binding Path=EntertainmentNews.HasError}"/>
     </Grid>
 </Window>
