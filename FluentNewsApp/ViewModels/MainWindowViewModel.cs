@@ -68,6 +68,8 @@ namespace FluentNewsApp.ViewModels
             var technologyTask = RefreshTechnologyFeed();
             var healthTask = RefreshHealthFeed();
             var entertainmentTask = RefreshEntertainmentFeed();
+
+            await Task.WhenAll(technologyTask, healthTask, entertainmentTask);
         }
 
         private async Task RefreshTechnologyFeed()
@@ -80,6 +82,7 @@ namespace FluentNewsApp.ViewModels
             catch (Exception)
             {
                 TechnologyNews.HasError = true;
+                return;
             }
 
             TechnologyNews.Articles = technology;
@@ -96,6 +99,7 @@ namespace FluentNewsApp.ViewModels
             catch (Exception)
             {
                 HealthNews.HasError = true;
+                return;
             }
 
             HealthNews.Articles = health;
@@ -112,6 +116,7 @@ namespace FluentNewsApp.ViewModels
             catch (Exception)
             {
                 EntertainmentNews.HasError = true;
+                return;
             }
 
             EntertainmentNews.Articles = entertainment;
