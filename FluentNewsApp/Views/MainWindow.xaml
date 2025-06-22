@@ -47,8 +47,8 @@
                 Command="{Binding RefreshCommand}"
                 Foreground="{DynamicResource {x:Static SystemColors.AccentColorBrushKey}}"/>
 
-        <local:CategoryControl Grid.Row="1" Grid.ColumnSpan="2" Margin="5 5 5 5" Category="{Binding Path=TechnologyNews.Category}" Articles="{Binding Path=TechnologyNews.Articles}" HasError="{Binding Path=TechnologyNews.HasError}" IsLoading="{Binding Path=TechnologyNews.IsLoading}"/>
-        <local:CategoryControl Grid.Row="2" Grid.ColumnSpan="2" Margin="5 5 5 5" Category="{Binding Path=HealthNews.Category}" Articles="{Binding Path=HealthNews.Articles}" HasError="{Binding Path=HealthNews.HasError}" IsLoading="{Binding Path=HealthNews.IsLoading}"/>
-        <local:CategoryControl Grid.Row="3" Grid.ColumnSpan="2" Margin="5 5 5 5" Category="{Binding Path=EntertainmentNews.Category}" Articles="{Binding Path=EntertainmentNews.Articles}" HasError="{Binding Path=EntertainmentNews.HasError}" IsLoading="{Binding Path=EntertainmentNews.IsLoading}"/>
+        <local:CategoryControl Grid.Row="1" Grid.ColumnSpan="2" Margin="8" Category="{Binding Path=TechnologyNews.Category}" Articles="{Binding Path=TechnologyNews.Articles}" HasError="{Binding Path=TechnologyNews.HasError}" IsLoading="{Binding Path=TechnologyNews.IsLoading}"/>
+        <local:CategoryControl Grid.Row="2" Grid.ColumnSpan="2" Margin="8" Category="{Binding Path=HealthNews.Category}" Articles="{Binding Path=HealthNews.Articles}" HasError="{Binding Path=HealthNews.HasError}" IsLoading="{Binding Path=HealthNews.IsLoading}"/>
+        <local:CategoryControl Grid.Row="3" Grid.ColumnSpan="2" Margin="8" Category="{Binding Path=EntertainmentNews.Category}" Articles="{Binding Path=EntertainmentNews.Articles}" HasError="{Binding Path=EntertainmentNews.HasError}" IsLoading="{Binding Path=EntertainmentNews.IsLoading}"/>
     </Grid>
 </Window>
