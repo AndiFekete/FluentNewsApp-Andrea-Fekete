@@ -36,8 +36,8 @@ namespace FluentNewsApp
 
             _services.AddHttpClient("newsAPI", httpClient =>
             {
-                httpClient.DefaultRequestHeaders.Authorization = 
-                    new System.Net.Http.Headers.AuthenticationHeaderValue(userApiKey);
+                httpClient.DefaultRequestHeaders.Add("X-Api-Key", userApiKey); 
+                httpClient.DefaultRequestHeaders.Add("user-agent", "FluentNewsApp/0.1");
             });
             _services.AddSingleton<NewsApiClient>();
             _services.AddSingleton<MainWindowViewModel>();
