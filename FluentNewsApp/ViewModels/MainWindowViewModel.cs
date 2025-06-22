@@ -8,6 +8,7 @@ namespace FluentNewsApp.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private readonly NewsApiClient _newsApiClient;
+        //point for improvement: use a collection to store feeds by category
         private ArticleFeed _technologyNews;
         private ArticleFeed _healthNews;
         private ArticleFeed _entertainmentNews;
@@ -64,11 +65,57 @@ namespace FluentNewsApp.ViewModels
 
         private async Task RefreshFeeds()
         {
-            //test
-            var tech = await _newsApiClient.GetNewsByCategoryAsync("technology");
-            TechnologyNews = new ArticleFeed { Category = "Technology", Articles = tech, HasError = true };
-            var health = await _newsApiClient.GetNewsByCategoryAsync("health");
-            HealthNews = new ArticleFeed { Category = "Health", Articles = health };
+            var technologyTask = RefreshTechnologyFeed();
+            var healthTask = RefreshHealthFeed();
+            var entertainmentTask = RefreshEntertainmentFeed();
+        }
+
+        private async Task RefreshTechnologyFeed()
+        {
+            var technology = new List<Article>();
+            try
+            {
+                technology = await _newsApiClient.GetNewsByCategoryAsync("technology");
+            }
+            catch (Exception)
+            {
+                TechnologyNews.HasError = true;
+            }
+
+            TechnologyNews.Articles = technology;
+            TechnologyNews.HasError = false;
+        }
+
+        private async Task RefreshHealthFeed()
+        {
+            var health = new List<Article>();
+            try
+            {
+                health = await _newsApiClient.GetNewsByCategoryAsync("health");
+            }
+            catch (Exception)
+            {
+                HealthNews.HasError = true;
+            }
+
+            HealthNews.Articles = health;
+            HealthNews.HasError = false;
+        }
+
+        private async Task RefreshEntertainmentFeed()
+        {
+            var entertainment = new List<Article>();
+            try
+            {
+                entertainment = await _newsApiClient.GetNewsByCategoryAsync("entertainment");
+            }
+            catch (Exception)
+            {
+                EntertainmentNews.HasError = true;
+            }
+
+            EntertainmentNews.Articles = entertainment;
+            EntertainmentNews.HasError = false;
         }
     }
 }
