@@ -1,8 +1,8 @@
-﻿using FluentNewsApp.WebCalls;
+﻿using FluentNewsApp.ViewModels;
+using FluentNewsApp.Views;
+using FluentNewsApp.WebCalls;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
-using System.Net.Http;
-using System.Printing;
 using System.Windows;
 
 namespace FluentNewsApp
@@ -13,12 +13,17 @@ namespace FluentNewsApp
     public partial class App : Application
     {
         IServiceCollection _services = new ServiceCollection();
+        private ServiceProvider _serviceProvider;
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
             ConfigureServices();
-            // Additional startup logic can go here
+            base.OnStartup(e);
+
+            var mainWindow = new MainWindow();
+            var mainWindowViewModel = _serviceProvider.GetRequiredService<MainWindowViewModel>();
+            mainWindow.DataContext = mainWindowViewModel;
+            mainWindow.Show();
         }
 
         private void ConfigureServices()
@@ -35,6 +40,8 @@ namespace FluentNewsApp
                     new System.Net.Http.Headers.AuthenticationHeaderValue(userApiKey);
             });
             _services.AddSingleton<NewsApiClient>();
+            _services.AddSingleton<MainWindowViewModel>();
+            _serviceProvider = _services.BuildServiceProvider();
         }
     }
 

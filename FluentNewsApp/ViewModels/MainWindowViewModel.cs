@@ -1,46 +1,72 @@
-﻿using FluentNewsApp.Models;
+﻿using FluentNewsApp.Commands;
+using FluentNewsApp.Models;
+using FluentNewsApp.WebCalls;
+using System.Windows.Input;
 
 namespace FluentNewsApp.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : ViewModelBase
     {
-        public ArticleFeed TechnologyNews { get; set; }
-        public ArticleFeed HealthNews { get; set; }
-        public ArticleFeed EntertainmentNews { get; set; }
+        private readonly NewsApiClient _newsApiClient;
+        private ArticleFeed _technologyNews;
+        private ArticleFeed _healthNews;
+        private ArticleFeed _entertainmentNews;
 
-        public MainWindowViewModel()
+        public ArticleFeed TechnologyNews
         {
-            // Initialize with some sample data
-            TechnologyNews =
-                new ArticleFeed
-                {
-                    Category = "Technology",
-                    Articles = new List<Article>
-                    {
-                        new Article { Title = "Tech News 1", Published = DateTime.Now.AddDays(-1) },
-                        new Article { Title = "Tech News 2", Published = DateTime.Now.AddDays(-2) }
-                    }
-                };
-            HealthNews =
-                new ArticleFeed
-                {
-                    Category = "Health",
-                    Articles = new List<Article>
-                    {
-                        new Article { Title = "Health News 1", Published = DateTime.Now.AddDays(-3) },
-                        new Article { Title = "Health News 2", Published = DateTime.Now.AddDays(-4) }
-                    }
-                };
-            EntertainmentNews =
-                new ArticleFeed
-                {
-                    Category = "Entertainment",
-                    Articles = new List<Article>
-                    {
-                        new Article { Title = "Entertainment News 1", Published = DateTime.Now.AddDays(-3) },
-                        new Article { Title = "Entertainment News 2", Published = DateTime.Now.AddDays(-4) }
-                    }
-                };
+            get
+            {
+                return _technologyNews;
+            }
+            set
+            {
+                _technologyNews = value;
+                OnPropertyChanged();
+            }
+        }
+        public ArticleFeed HealthNews
+        {
+            get
+            {
+                return _healthNews;
+            }
+            set
+            {
+                _healthNews = value;
+                OnPropertyChanged();
+            }
+        }
+        public ArticleFeed EntertainmentNews
+        {
+            get
+            {
+                return _entertainmentNews;
+            }
+            set
+            {
+                _entertainmentNews = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand RefreshCommand { get; }
+
+        public MainWindowViewModel(NewsApiClient newsApiClient)
+        {
+            _newsApiClient = newsApiClient ?? throw new ArgumentNullException(nameof(newsApiClient));
+
+            TechnologyNews = new ArticleFeed { Category = "Technology", Articles = new List<Article>() };
+            HealthNews = new ArticleFeed { Category = "Health", Articles = new List<Article>() };
+            EntertainmentNews = new ArticleFeed { Category = "Entertainment", Articles = new List<Article>() };
+
+            RefreshCommand = new RelayCommand(RefreshFeeds, ex => Console.WriteLine($"Error refreshing feeds: {ex.Message}"));  //TODO replace placeholder exception handling
+        }
+
+        private async Task RefreshFeeds()
+        {
+            //test
+            var tech = await _newsApiClient.GetNewsByCategoryAsync("technology");
+            TechnologyNews = new ArticleFeed { Category = "Technology", Articles = tech }; ;
         }
     }
 }

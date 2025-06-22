@@ -1,5 +1,4 @@
-﻿using FluentNewsApp.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 
 namespace FluentNewsApp.Views
 {
@@ -11,8 +10,6 @@ namespace FluentNewsApp.Views
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowViewModel viewModel = new MainWindowViewModel();
-            this.DataContext = viewModel;
         }
     }
 }

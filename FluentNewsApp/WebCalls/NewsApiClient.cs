@@ -16,7 +16,7 @@ namespace FluentNewsApp.WebCalls
 
         public async Task<List<Article>> GetNewsByCategoryAsync(string category)
         {
-            var url = $"https://newsapi.org/v2/top-headlines?country=hu&category={category}";
+            var url = $"https://newsapi.org/v2/top-headlines?category={category}";
             var response = await GetAsync(url);
             var jsonString = await response.Content.ReadAsStringAsync();
 
