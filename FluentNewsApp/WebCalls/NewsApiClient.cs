@@ -23,7 +23,16 @@ namespace FluentNewsApp.WebCalls
             var jsonOnbject = JsonConvert.DeserializeObject<JObject>(jsonString);
             //TODO handle status != ok
             var articleObjects = jsonOnbject["articles"]?.ToObject<List<JObject>>();
-            
+
+            // Simulate network delay and errors
+            var rand = Random.Shared.Next(200, 1000);
+            await Task.Delay(rand);
+            if (rand < 500)
+            {
+                throw new Exception("simulate error");
+            }
+
+
             return articleObjects?.Select(article => new Article
             {
                 Title = article["title"].ToString(),
