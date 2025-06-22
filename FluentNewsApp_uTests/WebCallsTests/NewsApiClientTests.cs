@@ -120,7 +120,7 @@ namespace FluentNewsApp_uTests.WebCallsTests
         }
 
         [Test]
-        public async Task GetNewsByCategory_IfApiError_ThrowsException()
+        public void GetNewsByCategory_IfApiError_ThrowsException()
         {
             var handlerMock = new Mock<HttpMessageHandler>();
             handlerMock
@@ -145,7 +145,7 @@ namespace FluentNewsApp_uTests.WebCallsTests
         }
 
     [Test]
-    public async Task GetNewsByCategory_IfJsonMalformed_ThrowsException()
+    public void GetNewsByCategory_IfJsonMalformed_ThrowsException()
     {
         var handlerMock = new Mock<HttpMessageHandler>();
         handlerMock

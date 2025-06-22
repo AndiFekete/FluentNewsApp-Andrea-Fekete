@@ -20,9 +20,17 @@ namespace FluentNewsApp.WebCalls
             var response = await GetAsync(url);
             var jsonString = await response.Content.ReadAsStringAsync();
 
-            var jsonOnbject = JsonConvert.DeserializeObject<JObject>(jsonString);
-            //TODO handle status != ok
-            var articleObjects = jsonOnbject["articles"]?.ToObject<List<JObject>>();
+            var jsonObject = JsonConvert.DeserializeObject<JObject>(jsonString);
+            if (jsonObject == null)
+            {
+                throw new JsonException("Failed to deserialize JSON response.");
+            }
+
+            var articleObjects = jsonObject["articles"]?.ToObject<List<JObject>>();
+            if (articleObjects == null)
+            {
+                return new List<Article>();
+            }
 
             // Simulate network delay and errors
 
@@ -33,12 +41,13 @@ namespace FluentNewsApp.WebCalls
             //    throw new Exception("simulate error");
             //}
 
-
-            return articleObjects?.Select(article => new Article
+            return articleObjects.Select(article => new Article
             {
-                Title = article["title"].ToString(),
-                Published = DateTime.Parse(article["publishedAt"]?.ToString())
-            }).ToList() ?? new List<Article>();
+                Title = article["title"]?.ToString() ?? "Unknown Title",
+                Published = DateTime.TryParse(article["publishedAt"]?.ToString(), out var publishedDate)
+                    ? publishedDate
+                    : DateTime.MinValue
+            }).ToList();
         }
 
         private async Task<HttpResponseMessage> GetAsync(string url)

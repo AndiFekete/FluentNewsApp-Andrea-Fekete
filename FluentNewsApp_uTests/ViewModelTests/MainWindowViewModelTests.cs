@@ -39,7 +39,7 @@ namespace FluentNewsApp_uTests.ViewModelTests
         [Test]
         public void Constructor_NewsApiClientIsNull_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new MainWindowViewModel(null));
+            Assert.Throws<ArgumentNullException>(() => new MainWindowViewModel(null!));
         }
 
         [Test]
