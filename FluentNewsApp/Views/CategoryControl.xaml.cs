@@ -35,8 +35,6 @@ namespace FluentNewsApp.Views
             set { SetValue(HasErrorProperty, value); }
         }
 
-        public bool HasNoError { get { return !HasError; } }
-
         public CategoryControl()
         {
             InitializeComponent();
