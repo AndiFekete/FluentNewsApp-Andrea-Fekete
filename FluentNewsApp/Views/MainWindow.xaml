@@ -6,7 +6,7 @@
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:FluentNewsApp.Views"
         mc:Ignorable="d"
-        Title="Fluent News App" Height="800" Width="450">
+        Title="Fluent News App" MinHeight="500" MinWidth="300" Height="600" Width="500">
     
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
@@ -29,20 +29,26 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" 
+                   Grid.ColumnSpan="2"
                    Text="Latest news" 
                    FontSize="24" 
-                   HorizontalAlignment="Center" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"
                    Margin="10"/>
         <Button Grid.Row="0" 
                 Grid.Column="1" 
-                Content="Refresh" 
+                Content="&#xE72C;"
+                FontFamily="Segoe MDL2 Assets"
+                FontSize="24"
                 Margin="10" 
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Center"
-                Command="{Binding RefreshCommand}"/>
+                Command="{Binding RefreshCommand}"
+                Foreground="{DynamicResource {x:Static SystemColors.AccentColorBrushKey}}"/>
 
-        <local:CategoryControl Grid.Row="1" Grid.ColumnSpan="2" Category="{Binding Path=TechnologyNews.Category}" Articles="{Binding Path=TechnologyNews.Articles}" HasError="{Binding Path=TechnologyNews.HasError}" IsLoading="{Binding Path=TechnologyNews.IsLoading}"/>
-        <local:CategoryControl Grid.Row="2" Grid.ColumnSpan="2" Category="{Binding Path=HealthNews.Category}" Articles="{Binding Path=HealthNews.Articles}" HasError="{Binding Path=HealthNews.HasError}" IsLoading="{Binding Path=HealthNews.IsLoading}"/>
-        <local:CategoryControl Grid.Row="3" Grid.ColumnSpan="2" Category="{Binding Path=EntertainmentNews.Category}" Articles="{Binding Path=EntertainmentNews.Articles}" HasError="{Binding Path=EntertainmentNews.HasError}" IsLoading="{Binding Path=EntertainmentNews.IsLoading}"/>
+        <local:CategoryControl Grid.Row="1" Grid.ColumnSpan="2" Margin="5 5 5 5" Category="{Binding Path=TechnologyNews.Category}" Articles="{Binding Path=TechnologyNews.Articles}" HasError="{Binding Path=TechnologyNews.HasError}" IsLoading="{Binding Path=TechnologyNews.IsLoading}"/>
+        <local:CategoryControl Grid.Row="2" Grid.ColumnSpan="2" Margin="5 5 5 5" Category="{Binding Path=HealthNews.Category}" Articles="{Binding Path=HealthNews.Articles}" HasError="{Binding Path=HealthNews.HasError}" IsLoading="{Binding Path=HealthNews.IsLoading}"/>
+        <local:CategoryControl Grid.Row="3" Grid.ColumnSpan="2" Margin="5 5 5 5" Category="{Binding Path=EntertainmentNews.Category}" Articles="{Binding Path=EntertainmentNews.Articles}" HasError="{Binding Path=EntertainmentNews.HasError}" IsLoading="{Binding Path=EntertainmentNews.IsLoading}"/>
     </Grid>
 </Window>

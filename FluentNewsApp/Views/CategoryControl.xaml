@@ -9,8 +9,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <DataTemplate x:Key="ArticleTemplate">
-            <StackPanel Margin="5">
-                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="16"/>
+            <StackPanel Orientation="Vertical" Margin="5">
+                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="16" TextWrapping="Wrap"/>
                 <TextBlock Text="{Binding Published}" FontSize="12" Margin="0,5,0,0"/>
             </StackPanel>
         </DataTemplate>
@@ -24,29 +24,30 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock Text="{Binding Path=Category, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="20" HorizontalAlignment="Center" Margin="10" Grid.Row="0"/>
+
+        <TextBlock Text="{Binding Path=Category, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="20" HorizontalAlignment="Center" Margin="10" Grid.Row="0" Foreground="{DynamicResource {x:Static SystemColors.AccentColorLight1BrushKey}}"/>
         <ListView ItemsSource="{Binding Path=Articles, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                   ItemTemplate="{StaticResource ArticleTemplate}" Visibility="{Binding Path=HasError, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToInverseVisibilityConverter}}"
-                  Grid.Row="1"/>
-        <TextBlock Text="Error loading articles :(" 
+                  Grid.Row="1"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+        <TextBlock Text="Error loading articles" 
                    Visibility="{Binding Path=HasError, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}" 
                    Grid.Row="1"
-                   Foreground="Red"
+                   Foreground="{DynamicResource {x:Static SystemColors.AccentColorBrushKey}}"
                    VerticalAlignment="Center"
                    TextAlignment="Center"
-                   FontSize="16"/>
+                   FontSize="16"
+                   FontFamily="Segoe UI"/>
 
         <Grid x:Name="LoadingOverLay" Panel.ZIndex="1000" Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.RowSpan="2">
             <Grid.Background>
-                <SolidColorBrush Color="Black" Opacity=".5"/>
+                <SolidColorBrush Color="Black" Opacity=".4"/>
             </Grid.Background>
             <TextBlock Text="Loading..." 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center" 
                    FontSize="24" 
-                   Foreground="Blue"
-                   Background="LightBlue"/>
+                   Foreground="{DynamicResource {x:Static SystemColors.AccentColorBrushKey}}"/>
         </Grid>
     </Grid>
 </UserControl>
