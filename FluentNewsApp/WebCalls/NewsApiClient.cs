@@ -25,12 +25,13 @@ namespace FluentNewsApp.WebCalls
             var articleObjects = jsonOnbject["articles"]?.ToObject<List<JObject>>();
 
             // Simulate network delay and errors
-            var rand = Random.Shared.Next(200, 1000);
-            await Task.Delay(rand);
-            if (rand < 400)
-            {
-                throw new Exception("simulate error");
-            }
+
+            //var rand = Random.Shared.Next(200, 1000);
+            //await Task.Delay(rand);
+            //if (rand < 400)
+            //{
+            //    throw new Exception("simulate error");
+            //}
 
 
             return articleObjects?.Select(article => new Article

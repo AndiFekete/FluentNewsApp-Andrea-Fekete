@@ -7,7 +7,7 @@ namespace FluentNewsApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private readonly NewsApiClient _newsApiClient;
+        private readonly INewsApiClient _newsApiClient;
         //point for improvement: use a collection to store feeds by category
         private ArticleFeed _technologyNews;
         private ArticleFeed _healthNews;
@@ -52,7 +52,7 @@ namespace FluentNewsApp.ViewModels
 
         public ICommand RefreshCommand { get; }
 
-        public MainWindowViewModel(NewsApiClient newsApiClient)
+        public MainWindowViewModel(INewsApiClient newsApiClient)
         {
             _newsApiClient = newsApiClient ?? throw new ArgumentNullException(nameof(newsApiClient));
 
@@ -63,7 +63,7 @@ namespace FluentNewsApp.ViewModels
             RefreshCommand = new RelayCommand(RefreshFeeds, ex => Console.WriteLine($"Error refreshing feeds: {ex.Message}"));  //TODO replace placeholder exception handling
         }
 
-        private async Task RefreshFeeds()
+        internal async Task RefreshFeeds()
         {
             var technologyTask = RefreshTechnologyFeed();
             var healthTask = RefreshHealthFeed();

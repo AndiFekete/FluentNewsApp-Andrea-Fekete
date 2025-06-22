@@ -2,7 +2,7 @@
 
 namespace FluentNewsApp.WebCalls
 {
-    interface INewsApiClient
+    public interface INewsApiClient
     {
         Task<List<Article>> GetNewsByCategoryAsync(string category); 
     }
