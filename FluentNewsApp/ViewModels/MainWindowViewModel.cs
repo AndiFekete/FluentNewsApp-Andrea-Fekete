@@ -75,6 +75,7 @@ namespace FluentNewsApp.ViewModels
         private async Task RefreshTechnologyFeed()
         {
             var technology = new List<Article>();
+            TechnologyNews.IsLoading = true;
             try
             {
                 technology = await _newsApiClient.GetNewsByCategoryAsync("technology");
@@ -82,16 +83,19 @@ namespace FluentNewsApp.ViewModels
             catch (Exception)
             {
                 TechnologyNews.HasError = true;
+                TechnologyNews.IsLoading = false;
                 return;
             }
 
             TechnologyNews.Articles = technology;
             TechnologyNews.HasError = false;
+            TechnologyNews.IsLoading = false;
         }
 
         private async Task RefreshHealthFeed()
         {
             var health = new List<Article>();
+            HealthNews.IsLoading = true;
             try
             {
                 health = await _newsApiClient.GetNewsByCategoryAsync("health");
@@ -99,16 +103,19 @@ namespace FluentNewsApp.ViewModels
             catch (Exception)
             {
                 HealthNews.HasError = true;
+                HealthNews.IsLoading = false;
                 return;
             }
 
             HealthNews.Articles = health;
             HealthNews.HasError = false;
+            HealthNews.IsLoading = false;
         }
 
         private async Task RefreshEntertainmentFeed()
         {
             var entertainment = new List<Article>();
+            EntertainmentNews.IsLoading = true;
             try
             {
                 entertainment = await _newsApiClient.GetNewsByCategoryAsync("entertainment");
@@ -116,11 +123,13 @@ namespace FluentNewsApp.ViewModels
             catch (Exception)
             {
                 EntertainmentNews.HasError = true;
+                EntertainmentNews.IsLoading = false;
                 return;
             }
 
             EntertainmentNews.Articles = entertainment;
             EntertainmentNews.HasError = false;
+            EntertainmentNews.IsLoading = false;
         }
     }
 }

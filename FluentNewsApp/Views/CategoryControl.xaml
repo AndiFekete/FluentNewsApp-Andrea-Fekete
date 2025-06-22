@@ -36,5 +36,17 @@
                    VerticalAlignment="Center"
                    TextAlignment="Center"
                    FontSize="16"/>
+
+        <Grid x:Name="LoadingOverLay" Panel.ZIndex="1000" Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.RowSpan="2">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity=".5"/>
+            </Grid.Background>
+            <TextBlock Text="Loading..." 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center" 
+                   FontSize="24" 
+                   Foreground="Blue"
+                   Background="LightBlue"/>
+        </Grid>
     </Grid>
 </UserControl>

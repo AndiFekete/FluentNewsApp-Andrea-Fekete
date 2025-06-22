@@ -27,7 +27,7 @@ namespace FluentNewsApp.WebCalls
             // Simulate network delay and errors
             var rand = Random.Shared.Next(200, 1000);
             await Task.Delay(rand);
-            if (rand < 500)
+            if (rand < 400)
             {
                 throw new Exception("simulate error");
             }

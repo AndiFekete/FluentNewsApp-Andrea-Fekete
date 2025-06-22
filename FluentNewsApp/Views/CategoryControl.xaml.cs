@@ -16,6 +16,8 @@ namespace FluentNewsApp.Views
             DependencyProperty.Register("Articles", typeof(List<Article>), typeof(CategoryControl), new PropertyMetadata(new List<Article>()));
         public static DependencyProperty HasErrorProperty =
             DependencyProperty.Register("HasError", typeof(bool), typeof(CategoryControl), new PropertyMetadata(false));
+        public static DependencyProperty IsLoadingProperty =
+            DependencyProperty.Register("IsLoading", typeof(bool), typeof(CategoryControl), new PropertyMetadata(false));
 
         public string Category
         {
@@ -35,6 +37,12 @@ namespace FluentNewsApp.Views
             set { SetValue(HasErrorProperty, value); }
         }
 
+        public bool IsLoading
+        {
+            get { return (bool)GetValue(IsLoadingProperty); }
+            set { SetValue(IsLoadingProperty, value); }
+        }
+
         public CategoryControl()
         {
             InitializeComponent();
@@ -47,6 +55,10 @@ namespace FluentNewsApp.Views
                 Source = this
             };
             Binding hasErrorBinding = new Binding("HasError")
+            {
+                Source = this
+            };
+            Binding isLoadingBinding = new Binding("IsLoading")
             {
                 Source = this
             };
